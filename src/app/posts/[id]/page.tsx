@@ -4,13 +4,14 @@ import Link from 'next/link';
 
 type PageProps = {
   params: Promise<{ id: string }>;
-  searchParams: { title?: string; body?: string };
+  searchParams: Promise<{ title?: string; body?: string }>;
 };
 
 const Page: React.FC<PageProps> = async ({ params, searchParams }) => {
-  const resolvedParams = await params; // Await the params
+  const resolvedParams = await params;
+  const searchparams = await searchParams ; 
   const { id } = resolvedParams;
-  const { title = "Default Title", body = "Default Body" } = searchParams;
+  const { title = "Default Title", body = "Default Body" } = searchparams;
 
   return (
     <div className="w-[80%] mx-auto p-11">
